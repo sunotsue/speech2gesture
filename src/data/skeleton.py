@@ -6,24 +6,25 @@ python data/skeleton.py -path2data ../dataset/groot/data -path2outdata ../datase
 '''
 import os
 import sys
+
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from argsUtils import *
+import pdb
+import warnings
 from datetime import datetime
-
-from common import Modality, MissingData
-
 from pathlib import Path
+
 import numpy as np
 import pandas as pd
-import pdb
-from tqdm import tqdm
-from joblib import Parallel, delayed
 import yaml
-import warnings
-
+from argsUtils import *
+from joblib import Parallel, delayed
 from pycasper.pathUtils import replace_Nth_parent
+from tqdm import tqdm
+
+from common import MissingData, Modality
+
 
 ## Load pose (with confidence intervals) from yml files (to work with data from https://github.com/amirbar/speech2gesture)
 def loadYAML(filename):
@@ -48,8 +49,9 @@ def loadPose(filename):
   return np.concatenate([pose, left, right])
 
 class Skeleton2D(Modality):
-  def __init__(self, path2data='../dataset/groot/data/speech2gesture_data',
-               path2outdata='../dataset/groot/data',
+  def __init__(self, path2data='projects/dataset_processed/pats-plus-copied/pats-plus/',
+               #path2data='../dataset/groot/data/speech2gesture_data',
+               path2outdata='projects/dataset_processed/pats-plus-copied/pats-plus/',
                speaker='all',
                preprocess_methods=['data']):
     super(Skeleton2D, self).__init__(path2data=path2data)
