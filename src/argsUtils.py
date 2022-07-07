@@ -2,15 +2,16 @@ import argparse
 import itertools
 from ast import literal_eval
 
+
 def get_args_perm():
   parser = argparse.ArgumentParser()
 
   ## Dataset Parameters
-  parser.add_argument('-path2data', nargs='+', type=str, default=['../dataset/groot/data'],
+  parser.add_argument('-path2data', nargs='+', type=str, default=['projects/dataset_processed/pats-plus-copied/pats-plus/'],
                       help='path to data')
-  parser.add_argument('-path2outdata', nargs='+', type=str, default=['../dataset/groot/data'],
+  parser.add_argument('-path2outdata', nargs='+', type=str, default=['projects/dataset_processed/pats-plus-copied/pats-plus/'],
                       help='path to output data (used for pre-processing)')
-  parser.add_argument('-speaker', nargs='+', type=literal_eval, default=['oliver'],
+  parser.add_argument('-speaker', nargs='+', type=literal_eval, default=['Aileen_Lee'],
                       help='choose speaker or `all` to use all the speakers available')  
   parser.add_argument('-modalities', nargs='+', type=literal_eval, default=[['pose/data', 'audio/log_mel_512']],
                       help='choose a set of modalities to be loaded by the dataloader')  
